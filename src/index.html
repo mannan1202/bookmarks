@@ -1,0 +1,403 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookmarks</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/svgicons.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src='https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js'></script>
+    <style>
+        [contenteditable]:focus {
+            background: #fff;
+        }
+
+        form:focus-within {
+            border-color: teal;
+        }
+    </style>
+</head>
+
+<body class="bg-white h-full font-sans antialiased">
+    <div id="app">
+        <div class="font-sans text-grey-darker leading-normal antialiased">
+
+            <nav class="bg-teal">
+                <div class="h-8"></div>
+                <div class="bg-white border-t-8 border-teal flex items-center justify-between flex-wrap lg:flex-no-wrap p-6"
+                    style="border-top-left-radius:1.25rem;border-top-right-radius:1.25rem;">
+                    <div class="flex items-center flex-no-shrink mr-6">
+                        <svg class="fill-current h-6 w-6 text-teal" viewBox="0 0 20 20">
+                            <path
+                                d="M8.652,16.404c-0.186,0-0.337,0.151-0.337,0.337v2.022c0,0.186,0.151,0.337,0.337,0.337s0.337-0.151,0.337-0.337v-2.022C8.989,16.555,8.838,16.404,8.652,16.404z">
+                            </path>
+                            <path
+                                d="M11.348,16.404c-0.186,0-0.337,0.151-0.337,0.337v2.022c0,0.186,0.151,0.337,0.337,0.337s0.337-0.151,0.337-0.337v-2.022C11.685,16.555,11.535,16.404,11.348,16.404z">
+                            </path>
+                            <path
+                                d="M17.415,5.281V4.607c0-2.224-1.847-4.045-4.103-4.045H10H6.687c-2.256,0-4.103,1.82-4.103,4.045v0.674H10H17.415z">
+                            </path>
+                            <path
+                                d="M18.089,10.674V7.304c0,0,0-0.674-0.674-0.674V5.955H10H2.585v0.674c-0.674,0-0.674,0.674-0.674,0.674v3.371c-0.855,0.379-1.348,1.084-1.348,2.022c0,1.253,2.009,3.008,2.009,3.371c0,2.022,1.398,3.371,3.436,3.371c0.746,0,1.43-0.236,1.98-0.627c-0.001-0.016-0.009-0.03-0.009-0.047v-2.022c0-0.372,0.303-0.674,0.674-0.674c0.301,0,0.547,0.201,0.633,0.474h0.041v-0.137c0-0.372,0.303-0.674,0.674-0.674s0.674,0.302,0.674,0.674v0.137h0.041c0.086-0.273,0.332-0.474,0.633-0.474c0.371,0,0.674,0.302,0.674,0.674v2.022c0,0.016-0.008,0.03-0.009,0.047c0.55,0.391,1.234,0.627,1.98,0.627c2.039,0,3.436-1.348,3.436-3.371c0-0.362,2.009-2.118,2.009-3.371C19.438,11.758,18.944,11.053,18.089,10.674z M5.618,18.089c-0.558,0-1.011-0.453-1.011-1.011s0.453-1.011,1.011-1.011s1.011,0.453,1.011,1.011S6.177,18.089,5.618,18.089z M6.629,13.371H5.474c-0.112,0-0.192-0.061-0.192-0.135c0-0.074,0.08-0.151,0.192-0.174l1.156-0.365V13.371z M8.652,12.521c-0.394,0.163-0.774,0.366-1.148,0.55c-0.061,0.03-0.132,0.052-0.2,0.076v-0.934c0.479-0.411,0.906-0.694,1.348-0.879V12.521z M5.281,10c-1.348,0-1.348-2.696-1.348-2.696h5.393C9.326,7.304,6.629,10,5.281,10z M10.674,12.296c-0.22-0.053-0.444-0.084-0.674-0.084s-0.454,0.032-0.674,0.084v-1.168C9.539,11.086,9.762,11.06,10,11.05c0.238,0.01,0.461,0.036,0.674,0.078V12.296z M12.696,13.146c-0.068-0.024-0.14-0.046-0.2-0.076c-0.374-0.184-0.754-0.386-1.148-0.55v-1.188c0.442,0.185,0.87,0.467,1.348,0.879V13.146zM14.382,18.089c-0.558,0-1.011-0.453-1.011-1.011s0.453-1.011,1.011-1.011c0.558,0,1.011,0.453,1.011,1.011S14.94,18.089,14.382,18.089z M13.371,13.371v-0.674l1.156,0.365c0.112,0.022,0.192,0.099,0.192,0.174c0,0.074-0.08,0.135-0.192,0.135H13.371z M14.719,10c-1.348,0-4.045-2.696-4.045-2.696h5.393C16.067,7.304,16.067,10,14.719,10z">
+                            </path>
+                            <path
+                                d="M10,16.067c-0.186,0-0.337,0.151-0.337,0.337V19.1c0,0.186,0.151,0.337,0.337,0.337s0.337-0.151,0.337-0.337v-2.696C10.337,16.218,10.186,16.067,10,16.067z">
+                            </path>
+                        </svg>
+                        <span class="pl-2 font-semibold text-xl tracking-tight lowercase">bookmarks</span>
+                    </div>
+                    <div class="block lg:hidden">
+                        <button @click="toggleNav"
+                            class="flex items-center px-3 py-2 border rounded text-grey-darker border-grey-darker hover:text-teal hover:border-teal">
+                            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <title>Menu</title>
+                                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div :class="open ? 'block': 'hidden'"
+                        class="w-full block flex-grow lg:flex lg:items-center lg:justify-end lg:w-auto">
+                        <div>
+                            <a v-show="!showMainPage" @click.self="toggleModal" href="#"
+                                class="block mt-4 lg:inline-block lg:mt-0 text-grey-darker lowercase no-underline hover:text-teal mr-4">
+                                Sign In/Sign Up
+                            </a>
+                            <a v-show="showMainPage" @click="toggleShowProfile" href="#"
+                                class="block mt-4 lg:inline-block lg:mt-0 text-grey-darker lowercase no-underline hover:text-teal mr-4">
+                                <svg class="fill-current h-8 w-8" viewBox="0 0 20 20">
+                                    <path d="M14.023,12.154c1.514-1.192,2.488-3.038,2.488-5.114c0-3.597-2.914-6.512-6.512-6.512
+                                								c-3.597,0-6.512,2.916-6.512,6.512c0,2.076,0.975,3.922,2.489,5.114c-2.714,1.385-4.625,4.117-4.836,7.318h1.186
+                                								c0.229-2.998,2.177-5.512,4.86-6.566c0.853,0.41,1.804,0.646,2.813,0.646c1.01,0,1.961-0.236,2.812-0.646
+                                								c2.684,1.055,4.633,3.568,4.859,6.566h1.188C18.648,16.271,16.736,13.539,14.023,12.154z M10,12.367
+                                								c-2.943,0-5.328-2.385-5.328-5.327c0-2.943,2.385-5.328,5.328-5.328c2.943,0,5.328,2.385,5.328,5.328
+                                								C15.328,9.982,12.943,12.367,10,12.367z"></path>
+                                </svg>
+                            </a>
+                            <a v-show="showMainPage" @click.self="logout" href="#"
+                                class="block mt-4 lg:inline-block lg:mt-0 text-grey-darker lowercase no-underline hover:text-teal mr-4">
+                                logout
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </nav>
+            <div v-if="showMainPage" id="content" class="container mx-auto text-center flex flex-col">
+                <div class="flex px-4 py-2 m-2">
+                    <div class="w-1/6">&nbsp;</div>
+                    <div class="w-5/6 h-12 flex items-center border-b border-grey-lighter">
+                        <div class="w-4/5">
+                            <input
+                                class="appearance-none bg-transparent border-none w-full text-grey-dark hover:text-grey-darkest focus:text-grey-darkest mr-3 py-1 px-2 leading-tight focus:outline-none"
+                                type="text" placeholder="Search title or url" aria-label="Title" v-model="q">
+                        </div>
+                        <div class="w-1/5 text-right">
+                            <span @click.self="sort('asc')"
+                                class="text-sm hover:text-teal lowercase cursor-pointer">A-Z</span>
+                            <span @click.self="sort('desc')"
+                                class="text-sm hover:text-teal lowercase cursor-pointer">Z-A</span>
+                        </div>
+                    </div>
+                    <div class="w-1/6">
+                        <button class="text-grey-darker hover:text-teal antialiased" @click="toggleAddBookmark"><svg
+                                class="fill-current h-10 w-10" viewBox="0 0 20 20">
+                                <path
+                                    d="M13.388,9.624h-3.011v-3.01c0-0.208-0.168-0.377-0.376-0.377S9.624,6.405,9.624,6.613v3.01H6.613c-0.208,0-0.376,0.168-0.376,0.376s0.168,0.376,0.376,0.376h3.011v3.01c0,0.208,0.168,0.378,0.376,0.378s0.376-0.17,0.376-0.378v-3.01h3.011c0.207,0,0.377-0.168,0.377-0.376S13.595,9.624,13.388,9.624z M10,1.344c-4.781,0-8.656,3.875-8.656,8.656c0,4.781,3.875,8.656,8.656,8.656c4.781,0,8.656-3.875,8.656-8.656C18.656,5.219,14.781,1.344,10,1.344z M10,17.903c-4.365,0-7.904-3.538-7.904-7.903S5.635,2.096,10,2.096S17.903,5.635,17.903,10S14.365,17.903,10,17.903z">
+                                </path>
+                            </svg></button>
+                        <div class="w-1/6">&nbsp;</div>
+                    </div>
+                </div>
+
+
+
+                <div class="flex px-4 py-2 m-2">
+                    <div class="w-1/6">&nbsp;</div>
+                    <div class="bg-white w-5/6 h-12 flex flex-col">
+
+                        <div v-for="(bookmark,index) in dataTable" :key="index"
+                            class="bg-teal-lighter border border-teal-lighter rounded flex px-4 py-2 m-1 hover:shadow-md">
+                            <div class="w-full flex">
+                                <div class="flex flex-col flex-grow items-start w-4/5">
+                                    <div class="text-2xl text-grey-darkest tracking-tight">
+                                        <p v-bind:id="'title-'+index" class="title" v-bind:ref="'title-'+index"
+                                            v-on:keydown.enter="prevent($event)"
+                                            v-on:keyup.enter="editTitle(index,$event)" contenteditable
+                                            class="focus-within::bg-white">
+                                            {{bookmark.title}}
+                                        </p>
+                                    </div>
+                                    <div class="text-xs">
+                                        <p v-bind:id="'url-'+index" class="url" v-bind:ref="'url-'+index"
+                                            v-on:keydown.enter="prevent($event)" v-on:keyup.enter="editUrl(index)"
+                                            contenteditable>
+                                            {{ bookmark.url }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="w-1/5 flex-1 pt-4 content-center">
+                                    <div>
+                                        <a @click="deleteBookmark(index)" href="#"
+                                            class="text-sm no-underline text-grey-dark lowercase hover:text-grey-darkest">
+                                            <svg class="fill-current h-6 w-6" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="w-1/6">&nbsp;</div>
+                </div>
+            </div>
+
+            <div v-if="!showMainPage"
+                class="container mx-auto text-center flex flex-col mt-32 text-lg leading-loose font-semibold lowercase">
+                <div class="w-full mb-4 flex items-center justify-start hover:text-teal">
+                    <div>
+                        <svg class="fill-current h-12 w-12 text-grey-darker hover:text-teal" viewBox="0 0 20 20">
+                            <path
+                                d="M5.177,17.658c0,0,3.445,1.987,4.823,1.987c2.067,0,4.823-1.987,4.823-1.987c0.024-0.025,0.044-0.054,0.068-0.08H5.109C5.133,17.604,5.153,17.633,5.177,17.658z M8.622,1.583V0.531C6.496,0.973,2.539,2.521,1.376,7.933H0.699c-0.189,0-0.344,0.155-0.344,0.344v1.378C0.354,9.845,0.509,10,0.699,10h0.392c-0.016,0.224-0.026,0.454-0.033,0.689H0.699c-0.189,0-0.344,0.155-0.344,0.344v1.378c0,0.189,0.155,0.344,0.344,0.344h0.439c0.089,0.79,0.262,1.804,0.594,2.849v2.663H4.34c-2.233-2.449-2.264-6.822-2.264-7.01C2.077,4.052,6.353,2.108,8.622,1.583zM10.689,0.354H9.311v2.059h1.378V0.354z M11.378,2.63v0.472H8.622V2.63C6.612,3.147,3.11,4.951,3.11,11.258c0,0,0.004,3.373,1.47,5.632h4.042v-0.689h2.756v0.689h4.042c1.466-2.259,1.47-5.632,1.47-5.632C16.89,4.951,13.388,3.147,11.378,2.63z M5.005,12.035c-0.318-0.364-0.517-0.833-0.517-1.354S4.687,9.69,5.005,9.327V12.035zM6.383,10.026c-0.295,0.078-0.517,0.335-0.517,0.654c0,0.319,0.222,0.576,0.517,0.654v1.395c-0.384-0.032-0.738-0.163-1.033-0.377V9.008c0.296-0.214,0.649-0.345,1.033-0.377V10.026z M7.761,12.353c-0.296,0.214-0.649,0.345-1.033,0.377v-1.395C7.022,11.257,7.244,11,7.244,10.681c0-0.319-0.222-0.576-0.517-0.654V8.631c0.384,0.032,0.738,0.163,1.033,0.377V12.353zM8.105,12.035V9.327c0.318,0.363,0.517,0.833,0.517,1.354S8.423,11.671,8.105,12.035z M10,13.445l-1.378,0.689L10,12.756l1.378,1.378L10,13.445z M11.895,12.035c-0.318-0.364-0.517-0.833-0.517-1.354s0.199-0.991,0.517-1.354V12.035z M13.273,10.026c-0.295,0.078-0.517,0.335-0.517,0.654c0,0.319,0.222,0.576,0.517,0.654v1.395c-0.384-0.032-0.738-0.163-1.033-0.377V9.008c0.296-0.214,0.649-0.345,1.033-0.377V10.026z M14.651,12.353c-0.296,0.214-0.649,0.345-1.033,0.377v-1.395c0.295-0.078,0.517-0.335,0.517-0.654c0-0.319-0.222-0.576-0.517-0.654V8.631c0.384,0.032,0.738,0.163,1.033,0.377V12.353zM14.995,12.035V9.327c0.318,0.363,0.517,0.833,0.517,1.354S15.313,11.671,14.995,12.035z M19.646,9.656V8.278c0-0.189-0.155-0.344-0.344-0.344h-0.678c-1.163-5.413-5.12-6.96-7.246-7.402v1.052c2.269,0.525,6.545,2.469,6.545,9.675c0,0.188-0.031,4.561-2.264,7.01h2.608v-2.663c0.333-1.044,0.505-2.058,0.594-2.849h0.439c0.189,0,0.344-0.155,0.344-0.344v-1.378c0-0.189-0.155-0.344-0.344-0.344h-0.359c-0.007-0.235-0.017-0.465-0.033-0.689h0.392C19.491,10,19.646,9.845,19.646,9.656z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="w-1/2 h-24 pl-4 text-left">
+                        <p class="mt-8">A simple, clean, user friendly and beautiful design!</p>
+                    </div>
+                </div>
+                <div class="w-full mb-4 flex items-center justify-end">
+                    <div>
+                        <svg class="fill-current h-12 w-12 text-grey-darker hover:text-teal" viewBox="0 0 20 20">
+                            <polygon
+                                points="18.198,7.95 3.168,7.95 3.168,8.634 9.317,9.727 9.317,19.564 12.05,19.564 12.05,9.727 18.198,8.634 ">
+                            </polygon>
+                            <path
+                                d="M2.485,10.057v-3.41H2.473l0.012-4.845h1.366c0.378,0,0.683-0.306,0.683-0.683c0-0.378-0.306-0.683-0.683-0.683H1.119c-0.378,0-0.683,0.306-0.683,0.683c0,0.378,0.306,0.683,0.683,0.683h0.683v4.845C1.406,6.788,1.119,7.163,1.119,7.609v2.733c0,0.566,0.459,1.025,1.025,1.025c0.053,0,0.105-0.008,0.157-0.016l-0.499,5.481l5.9,2.733h0.931C8.634,13.266,5.234,10.458,2.485,10.057z">
+                            </path>
+                            <path
+                                d="M18.169,6.584c-0.303-3.896-3.202-6.149-7.486-6.149c-4.282,0-7.183,2.252-7.484,6.149H18.169z M15.463,3.187c0.024,0.351-0.103,0.709-0.394,0.977c-0.535,0.495-1.405,0.495-1.94,0c-0.29-0.268-0.418-0.626-0.394-0.977C13.513,3.827,14.683,3.827,15.463,3.187z">
+                            </path>
+                            <path
+                                d="M18.887,10.056c-2.749,0.398-6.154,3.206-6.154,9.508h0.933l5.899-2.733L18.887,10.056z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="w-1/2 h-24 pl-4 text-left">
+                        <p class="mt-8">Mobile first design, crafted with love</p>
+                    </div>
+                </div>
+                <div class="w-full mb-4 flex items-center justify-start">
+                    <div>
+                        <svg class="fill-current h-12 w-12 text-grey-darker hover:text-teal" viewBox="0 0 20 20">
+                            <path
+                                d="M18.21,16.157v-8.21c0-0.756-0.613-1.368-1.368-1.368h-1.368v1.368v1.368v6.841l-1.368,3.421h5.473L18.21,16.157z">
+                            </path>
+                            <path
+                                d="M4.527,9.316V7.948V6.579H3.159c-0.756,0-1.368,0.613-1.368,1.368v8.21l-1.368,3.421h5.473l-1.368-3.421V9.316z">
+                            </path>
+                            <path
+                                d="M14.766,5.895h0.023V5.21c0-2.644-2.145-4.788-4.789-4.788S5.211,2.566,5.211,5.21v0.685h0.023H14.766zM12.737,3.843c0.378,0,0.684,0.307,0.684,0.684s-0.306,0.684-0.684,0.684c-0.378,0-0.684-0.307-0.684-0.684S12.358,3.843,12.737,3.843z M10,1.448c0.755,0,1.368,0.613,1.368,1.368S10.755,4.185,10,4.185c-0.756,0-1.368-0.613-1.368-1.368S9.244,1.448,10,1.448z">
+                            </path>
+                            <path
+                                d="M14.789,6.579H5.211v9.578l1.368,1.368h6.841l1.368-1.368V6.579z M12.052,12.052H7.948c-0.378,0-0.684-0.306-0.684-0.684c0-0.378,0.306-0.684,0.684-0.684h4.105c0.378,0,0.684,0.306,0.684,0.684C12.737,11.746,12.431,12.052,12.052,12.052z M12.052,9.316H7.948c-0.378,0-0.684-0.307-0.684-0.684s0.306-0.684,0.684-0.684h4.105c0.378,0,0.684,0.307,0.684,0.684S12.431,9.316,12.052,9.316z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="w-1/2 h-24 pl-4 text-left ">
+                        <p class="mt-8">A way collect your all bookmarks in one place!</p>
+                    </div>
+                </div>
+                <div class="w-full mb-4 flex items-center justify-end">
+                    <div>
+                        <svg class="fill-current h-12 w-12 text-grey-darker hover:text-teal" viewBox="0 0 20 20"
+                            enable-background="new 0 0 20 20" xml:space="preserve">
+                            <circle cx="3.274" cy="6.198" r="0.585"></circle>
+                            <rect x="6.198" y="4.736" width="0.585" height="2.34"></rect>
+                            <path
+                                d="M15.849,11.669v-1.064l-1.072-0.715l-0.829,1.659c-0.428,0.174-0.73,0.592-0.73,1.083c0,0.265,0.091,0.507,0.24,0.703l-0.201,2.806h1.759l0.191-2.676c0.216-0.212,0.35-0.507,0.35-0.833c0-0.102-0.017-0.2-0.042-0.294L15.849,11.669z M14.387,13.217c-0.322,0-0.585-0.262-0.585-0.585c0-0.322,0.262-0.585,0.585-0.585c0.322,0,0.585,0.262,0.585,0.585C14.971,12.954,14.709,13.217,14.387,13.217z">
+                            </path>
+                            <polygon
+                                points="15.721,7.368 19.066,7.368 19.066,3.859 16.141,2.894 15.556,2.104 11.462,2.104 10.877,2.894 8.538,3.859 8.538,7.368 11.297,7.368 	">
+                            </polygon>
+                            <path
+                                d="M5.029,7.368h0.585V4.444h-2.34l-1.755,1.17v0.877H0.496c-0.081,0-0.146,0.065-0.146,0.146s0.065,0.146,0.146,0.146h1.024v0.585H0.642C0.48,7.368,0.35,7.499,0.35,7.66S0.48,7.953,0.642,7.953h3.802L5.029,7.368zM3.274,7.076c-0.485,0-0.877-0.393-0.877-0.877s0.393-0.877,0.877-0.877s0.877,0.393,0.877,0.877S3.758,7.076,3.274,7.076z">
+                            </path>
+                            <path
+                                d="M18.96,16.141l-0.631-2.944c0.094-0.168,0.151-0.359,0.151-0.565c0-0.295-0.113-0.561-0.292-0.766v-1.427l0.71-2.486H9.708c-0.646,0-1.17,0.524-1.17,1.17c0,0.162,0.033,0.317,0.093,0.457l-0.682,2.047c-0.346,0.203-0.58,0.575-0.58,1.005c0,0.152,0.031,0.297,0.084,0.431l-1.099,3.079h1.863l0.407-1.141l1.504,0.725l0.761-1.581l-1.51-0.711c0.201-0.209,0.33-0.488,0.33-0.801c0-0.162-0.033-0.316-0.093-0.457l0.556-1.668l1.73-1.384h2.778l1.755,1.17v1.48v0.093c-0.18,0.206-0.292,0.472-0.292,0.766c0,0.392,0.195,0.738,0.492,0.95l0.536,2.559H18.96z M8.538,13.217c-0.322,0-0.585-0.262-0.585-0.585c0-0.322,0.262-0.585,0.585-0.585c0.322,0,0.585,0.262,0.585,0.585C9.123,12.954,8.86,13.217,8.538,13.217z M9.708,9.708c-0.322,0-0.585-0.262-0.585-0.585c0-0.322,0.262-0.585,0.585-0.585c0.322,0,0.585,0.262,0.585,0.585C10.292,9.445,10.03,9.708,9.708,9.708z M17.311,8.538c0.322,0,0.585,0.262,0.585,0.585c0,0.322-0.262,0.585-0.585,0.585s-0.585-0.262-0.585-0.585C16.726,8.8,16.988,8.538,17.311,8.538z M16.726,12.632c0-0.322,0.262-0.585,0.585-0.585s0.585,0.262,0.585,0.585c0,0.322-0.262,0.585-0.585,0.585S16.726,12.954,16.726,12.632z">
+                            </path>
+                            <rect x="7.368" y="4.736" width="0.585" height="2.34"></rect>
+                            <polygon
+                                points="11.89,14.086 11.468,14.288 10.517,16.265 10.622,16.721 11.413,17.101 12.68,14.466 	">
+                            </polygon>
+                            <polygon
+                                points="19.285,16.726 17.092,16.726 16.726,17.019 16.726,17.896 19.65,17.896 19.65,17.019 	">
+                            </polygon>
+                            <polygon
+                                points="12.997,16.726 12.632,17.019 12.632,17.896 15.556,17.896 15.556,17.019 15.191,16.726 	">
+                            </polygon>
+                            <polygon
+                                points="5.979,16.726 5.613,17.019 5.613,17.896 8.538,17.896 8.538,17.019 8.172,16.726 	">
+                            </polygon>
+                            <path
+                                d="M5.933,13.752l0.558,0.263l0.344-0.963c-0.035-0.138-0.052-0.278-0.052-0.419c0-0.536,0.253-1.044,0.672-1.375l0.634-1.903l-2.461,2.109c-0.005,0-0.01-0.002-0.015-0.002c-0.646,0-1.17,0.524-1.17,1.17c0,0.646,0.524,1.17,1.17,1.17C5.725,13.802,5.831,13.781,5.933,13.752z M5.029,12.632c0-0.322,0.262-0.585,0.585-0.585s0.585,0.262,0.585,0.585c0,0.322-0.262,0.585-0.585,0.585S5.029,12.954,5.029,12.632z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="w-1/2 h-24 pl-4 text-left">
+                        <p class="mt-8">You can even search & sort your bookmarks!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- user profile modal popup-->
+        <div v-if="showProfile" @click.self="toggleShowProfile"
+            class="fixed pin z-50 overflow-auto bg-teal-lighter flex">
+            <div class="relative p-8 bg-white w-full rounded-lg max-w-sm m-auto flex-col flex shadow-md">
+                <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                    <img class="w-full" src="me.png" alt="personal photo">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2 antialiased">Mannan Shah</div>
+                        <div class="text-grey-darker text-sm leading-tight antialiased">
+                            "To me, the only sin is mediocrity" - <span class="font-bold">Martha Grahman</span>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4">
+
+                        <a href="https://twitter.com/mannan_shah_" target="_blank">
+                            <svg class="fill-current h-12 w-12 text-sm font-semibold text-grey-darker hover:text-teal"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M14.467,6.707c-0.34,0.198-0.715,0.342-1.115,0.419c-0.318-0.335-0.775-0.545-1.279-0.545c-0.969,0-1.754,0.773-1.754,1.727c0,0.135,0.015,0.267,0.045,0.394C8.905,8.628,7.612,7.94,6.747,6.896C6.596,7.151,6.509,7.448,6.509,7.764c0,0.599,0.31,1.128,0.78,1.438C7.002,9.192,6.732,9.115,6.495,8.985c0,0.007,0,0.014,0,0.021c0,0.837,0.605,1.535,1.408,1.694c-0.147,0.04-0.302,0.06-0.462,0.06c-0.113,0-0.223-0.011-0.33-0.031c0.223,0.687,0.871,1.186,1.638,1.199c-0.6,0.464-1.356,0.739-2.179,0.739c-0.142,0-0.281-0.007-0.418-0.023c0.777,0.489,1.699,0.775,2.689,0.775c3.228,0,4.991-2.63,4.991-4.913c0-0.075-0.002-0.149-0.004-0.223c0.342-0.244,0.639-0.547,0.875-0.894c-0.316,0.137-0.652,0.23-1.008,0.272C14.057,7.448,14.336,7.11,14.467,6.707 M10,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.196,0,9.407-4.211,9.407-9.406C19.406,4.805,15.195,0.594,10,0.594 M10,18.552c-4.723,0-8.551-3.829-8.551-8.552S5.277,1.449,10,1.449c4.723,0,8.551,3.829,8.551,8.551S14.723,18.552,10,18.552">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/mannanbshah" target="_blank">
+                            <svg class="fill-current h-12 w-12 text-sm font-semibold text-grey-darker hover:text-teal"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M9.969,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.375,4.805,15.164,0.594,9.969,0.594 M9.969,18.552c-4.723,0-8.551-3.829-8.551-8.552s3.829-8.551,8.551-8.551S18.521,5.277,18.521,10S14.691,18.552,9.969,18.552 M12.534,5.724H7.403c-0.944,0-1.71,0.766-1.71,1.71v5.131c0,0.944,0.766,1.71,1.71,1.71h5.131c0.944,0,1.71-0.766,1.71-1.71V7.435C14.244,6.49,13.479,5.724,12.534,5.724M11.679,7.007h1.283V8.29h-1.283V7.007z M9.969,8.29c0.944,0,1.71,0.766,1.71,1.71s-0.766,1.71-1.71,1.71s-1.71-0.766-1.71-1.71S9.024,8.29,9.969,8.29 M13.39,12.565c0,0.472-0.384,0.854-0.855,0.854H7.403c-0.472,0-0.855-0.383-0.855-0.854V9.573h0.898C7.423,9.712,7.403,9.854,7.403,10c0,1.417,1.149,2.565,2.565,2.565c1.416,0,2.565-1.148,2.565-2.565c0-0.146-0.02-0.288-0.043-0.427h0.898V12.565z">
+                                </path>
+                            </svg>
+                        </a>
+
+
+                    </div>
+                    <div class="px-6 py-4">
+                        <span
+                            class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker hover:text-teal mr-2">#fullstack</span>
+                        <span
+                            class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker hover:text-teal mr-2">#vuejs</span>
+                        <span
+                            class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker hover:text-teal">#tailwind</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="addBookmark" @click.self="toggleAddBookmark"
+            class="fixed pin z-50 overflow-auto bg-teal-lighter flex">
+            <div class="relative p-8 bg-white w-full rounded-lg max-w-sm m-auto flex-col flex shadow-md">
+                <form class="px-8 pt-6 pb-2 mb-2" v-on:submit.prevent>
+                    <div class="mb-4">
+                        <input
+                            class="appearance-none bg-transparent border-b border-teal w-full text-grey-darker antialiased mr-3 py-1 px-2 leading-normal focus:outline-none"
+                            type="text" placeholder="title" aria-label="title" v-model="bookmark.title">
+                    </div>
+                    <div class="mb-6">
+                        <input
+                            class="appearance-none bg-transparent border-b border-teal w-full text-grey-darker antialiased mr-3 py-1 px-2 leading-normal focus:outline-none"
+                            type="text" placeholder="url" aria-label="url" v-model="bookmark.url">
+
+                    </div>
+                    <div class="flex items-center justify-end">
+                        <!-- <button
+                                    class="bg-teal antialiased hover:bg-teal-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="button">
+                                    Sign In
+                                </button> -->
+                        <div class="flex">
+
+                            <button @click.self="saveBookmark"
+                                class="bg-teal antialiased hover:bg-teal-dark text-white py-2 px-4 focus:outline-none focus:shadow-outline">
+                                save
+                            </button>
+
+                        </div>
+
+                    </div>
+                </form>
+
+                <span @click="toggleAddBookmark" class="absolute pin-t pin-r pt-4 px-4">
+                    <svg class="h-8 w-8 text-grey hover:text-grey-darkest" viewBox="0 0 20 20">
+                        <path
+                            d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z">
+                        </path>
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+
+
+        <div v-if="modal" @click.self="toggleModal" class="fixed pin z-50 overflow-auto bg-teal-lighter flex">
+            <div class="relative p-8 bg-white w-full rounded-lg max-w-sm m-auto flex-col flex shadow-md">
+                <form class="px-8 pt-6 pb-8 mb-4" v-on:submit.prevent>
+                    <div class="mb-4">
+                        <input
+                            class="appearance-none bg-transparent border-b border-teal w-full text-grey-darker antialiased mr-3 py-1 px-2 leading-normal focus:outline-none"
+                            type="text" placeholder="username" aria-label="username" value="demo">
+                    </div>
+                    <div class="mb-6">
+                        <input
+                            class="appearance-none bg-transparent border-b border-teal w-full text-grey-darker antialiased mr-3 py-1 px-2 leading-normal focus:outline-none"
+                            type="password" placeholder="************" aria-label="password" value="demo">
+
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <!-- <button
+                            class="bg-teal antialiased hover:bg-teal-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button">
+                            Sign In
+                        </button> -->
+                        <div class="flex">
+                            <button @click="login"
+                                class="bg-teal antialiased hover:bg-teal-dark text-white py-2 px-4 focus:outline-none focus:shadow-outline">
+                                sign in
+                            </button>
+                        </div>
+                        <a class="inline-block align-baseline antialiased text-sm text-teal hover:text-teal-darker"
+                            href="#">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </form>
+                <p class="text-center text-grey antialiased text-xs">
+                    ©2019 Mannan Shah.
+                </p>
+
+                <span @click="toggleModal" class="absolute pin-t pin-r pt-4 px-4">
+                    <svg class="h-8 w-8 text-grey hover:text-grey-darkest" viewBox="0 0 20 20">
+                        <path
+                            d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z">
+                        </path>
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="js/app.js"></script>
+
+</html>
