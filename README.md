@@ -1,5 +1,5 @@
 # Bookmarks
-A admin panel for creating list of bookmarks list 
+A admin panel for bookmarks list 
 
 ## Features
 - Landing Page
